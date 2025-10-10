@@ -16,10 +16,10 @@ permutations = {word}
 letters = dict()
 denominator = 1
 d = enchant.Dict("en_UK")
-english_words = []
+english_words = set()
 
 if d.check(word.lower()):
-    english_words.append(word)
+    english_words.add(word)
 
 for letter in word:
     if letter not in letters:
@@ -62,7 +62,13 @@ while len(permutations) < no_of_combinations:
     permutations.add(generated_word)
 
     if d.check(generated_word.lower()):
-        english_words.append(generated_word)
+        english_words.add(generated_word)
 
 print("All permutations:\n", permutations)
-print("All english words:\n", english_words)
+
+print("All english words:")
+
+if len(english_words) > 0:
+    print(english_words)
+else:
+    print("{}")
