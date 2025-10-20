@@ -61,7 +61,7 @@ int main() {
         denominator *= factorial(value.second);
     }
 
-    long long no_of_combinations = factorial(word.length()) / denominator;
+    long long no_of_combinations = factorial((long long) word.length()) / denominator;
 
     cout << "This word has " + to_string(no_of_combinations) + " combination(s)." << endl;
 
@@ -74,8 +74,8 @@ int main() {
         vector<int> indexes = {};
         int random_index = 0;
         char random_letter = '\0';
-        int number_pos = 0;
-        int letter_pos = 0;
+        long long number_pos = 0;
+        long long letter_pos = 0;
 
         for (int i = 0; i < word.length(); i++) {
             generated_vector.push_back('\0');
@@ -84,11 +84,11 @@ int main() {
 
         for (int counter = 0; counter < word.length(); counter++) {
 
-            number_pos = random(0, (indexes.size() - 1));
+            number_pos = random(0, ((long long) indexes.size() - 1));
             random_index = indexes.at(number_pos);
             indexes.erase(indexes.begin() + number_pos);
 
-            letter_pos = random(0, (unique_keys_copy.size() - 1));
+            letter_pos = random(0, ((long long) unique_keys_copy.size() - 1));
             random_letter = unique_keys_copy.at(letter_pos);
             letters_copy.at(random_letter) -= 1;
 
