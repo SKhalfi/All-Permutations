@@ -109,7 +109,7 @@ int main() {
 
     cout << "All permutations: " << endl;
 
-    for (string word: permutations) {
-        cout << word + ", ";
+    for (string permutation: permutations) {
+        cout << permutation + ", ";
     }
 }
