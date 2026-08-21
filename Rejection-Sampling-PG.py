@@ -5,6 +5,7 @@ print("\n\033[4mRejection Sampling Permutation Generator (Python)\033[0m")
 
 while True: # Continues looping until valid word is retrieved from user
     word = input("\nEnter a word (all characters are acceptable): ")
+    word = word.strip()
 
     if len(word) == 0:
         print("\nWord must not be left empty.")
@@ -12,7 +13,6 @@ while True: # Continues looping until valid word is retrieved from user
     else:
         break
 
-word = word.strip()
 permutations = {word} # Permutations are served in a set which automatically handle repeated values
 letters = dict() # All letters within the user's word are handled through a dictionary (map)
 denominator = 1
