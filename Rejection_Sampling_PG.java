@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class all_permutations {
+public class Rejection_Sampling_PG {
 
     public static long factorial(long number) {
         long total  = 1;
@@ -18,29 +18,31 @@ public class all_permutations {
         Scanner input = new Scanner(System.in);
         Random random = new Random();
 
-        System.out.println(System.lineSeparator() + "\u001B[4mRejection Sampling Permutation Generator\u001B[0m");
+        System.out.println(System.lineSeparator() + "\u001B[4mRejection Sampling Permutation Generator (Java)\u001B[0m");
 
-        while (true) {
+        while (true) { // Continues looping until valid word is retrieved from user
             System.out.print(System.lineSeparator() + "Enter a word (all characters are acceptable): ");
             word = input.nextLine();
 
             if (word.isEmpty()) {
                 System.out.println(System.lineSeparator() + "Word must not be left empty.");
             }
+
             else {
                 break;
             }
         }
 
         input.close();
-
-        HashSet<String> permutations = new HashSet<>();
-        HashMap<Character, Integer> letters = new HashMap<>();
-        ArrayList<Character> uniqueKeys = new ArrayList<>();
+        
+        word = word.strip();
+        HashSet<String> permutations = new HashSet<>(); // Permutations are served in a set which automatically handle repeated values
+        HashMap<Character, Integer> letters = new HashMap<>(); // All letters within the user's word are handled through a dictionary (map)
+        List<Character> uniqueKeys = new ArrayList<>(); // A list of all unique keys in the letters map
         long denominator = 1;
 
         for (char letter : word.toCharArray()) {
-            if (!letters.containsKey(letter)) {
+            if (!letters.containsKey(letter)) { // Add a new entry to letters if one does not exist
                 letters.put(letter, 1);
                 uniqueKeys.add(letter);
             }
@@ -81,6 +83,7 @@ public class all_permutations {
 
                 letterPosition = random.nextInt(uniqueKeysCopy.size());
                 randomLetter = uniqueKeysCopy.get(letterPosition);
+
                 lettersCopy.put(randomLetter, lettersCopy.get(randomLetter) - 1);
 
                 if (lettersCopy.get(randomLetter) == 0) {

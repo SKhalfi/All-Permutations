@@ -1,7 +1,7 @@
 import random
 import math
 
-print("\n\033[4mRejection Sampling Permutation Generator\033[0m")
+print("\n\033[4mRejection Sampling Permutation Generator (Python)\033[0m")
 
 while True: # Continues looping until valid word is retrieved from user
     word = input("\nEnter a word (all characters are acceptable): ")
@@ -13,7 +13,7 @@ while True: # Continues looping until valid word is retrieved from user
         break
 
 word = word.strip()
-permutations = {word} # Permutations are served in a set which automatically handles repeated values
+permutations = {word} # Permutations are served in a set which automatically handle repeated values
 letters = dict() # All letters within the user's word are handled through a dictionary (map)
 denominator = 1
 
