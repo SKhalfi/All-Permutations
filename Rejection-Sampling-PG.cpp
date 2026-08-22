@@ -10,15 +10,32 @@ using namespace std;
 random_device rd;
 mt19937 gen(rd());
 
-long long random(long long lower_bound, long long upper_bound) {
-    uniform_int_distribution<long long> dist(lower_bound, upper_bound);
+unsigned long long random(unsigned long long lower_bound, unsigned long long upper_bound) {
+    uniform_int_distribution<unsigned long long> dist(lower_bound, upper_bound);
     return dist(gen);
 }
 
-long long factorial(long long number) {
-    long long total = 1;
+void strip(string &str) {
 
-    while (number != 1) {
+    const string whitespace = " \t\n\r\f\v"; // ASCII representation of whitespace
+
+    const size_t start = str.find_first_not_of(whitespace); // If this method fails to find a character that is not whitespace, then it will return npos
+
+    if (start == string::npos) { // Check if the string is completely empty or full of spaces
+        str = "";
+    }
+
+    else {
+        const size_t end = str.find_last_not_of(whitespace);
+
+        str = str.substr(start, end - start + 1); // // Extract the word from the whitespaces
+    }
+}
+
+unsigned long long factorial(unsigned long long number) {
+    unsigned long long total = 1;
+
+    while (number > 1) {
         total *= number;
         number -= 1;
     }
@@ -26,14 +43,20 @@ long long factorial(long long number) {
 }
 
 int main() {
+
+    cout << "\nRejection Sampling Permutation Generator (C++)\n";
+    cout << "----------------------------------------------\n";
+
     string word;
 
     while (true) {
-        cout << "Enter a word: ";
+
+        cout << "\nEnter a word: ";
         getline(cin, word);
+        strip(word);
 
         if (word.empty()) {
-            cout << "Word must not be left empty.\n" << endl;
+            cout << "Word must not be left empty.\n";
         }
 
         else {
@@ -45,7 +68,7 @@ int main() {
     unordered_set<string> permutations = {word};
     unordered_map<char, int> letters;
     vector<char> unique_keys = {};
-    long long denominator = 1;
+    unsigned long long denominator = 1;
 
     for (char letter: word) {
         if (letters.count(letter) == 0) {
@@ -61,9 +84,9 @@ int main() {
         denominator *= factorial(value.second);
     }
 
-    long long no_of_combinations = factorial((long long) word.length()) / denominator;
+    unsigned long long no_of_combinations = factorial( word.length()) / denominator;
 
-    cout << "This word has " + to_string(no_of_combinations) + " combination(s)." << endl;
+    cout << "This word has " + to_string(no_of_combinations) + " combination(s).\n";
 
 
     while (permutations.size() < no_of_combinations) {
@@ -75,7 +98,7 @@ int main() {
         int random_index = 0;
         char random_letter = '\0';
         long long number_pos = 0;
-        long long letter_pos = 0;
+        unsigned long long letter_pos = 0;
 
         for (int i = 0; i < word.length(); i++) {
             generated_vector.push_back('\0');
@@ -84,11 +107,11 @@ int main() {
 
         for (int counter = 0; counter < word.length(); counter++) {
 
-            number_pos = random(0, ((long long) indexes.size() - 1));
+            number_pos = random(0, (indexes.size() - 1));
             random_index = indexes.at(number_pos);
             indexes.erase(indexes.begin() + number_pos);
 
-            letter_pos = random(0, ((long long) unique_keys_copy.size() - 1));
+            letter_pos = random(0, (unique_keys_copy.size() - 1));
             random_letter = unique_keys_copy.at(letter_pos);
             letters_copy.at(random_letter) -= 1;
 
@@ -107,7 +130,7 @@ int main() {
         permutations.insert(generated_word);
     }
 
-    cout << "All permutations: " << endl;
+    cout << "\nAll permutations:\n";
 
     for (string permutation: permutations) {
         cout << permutation + ", ";
