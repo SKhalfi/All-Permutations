@@ -15,24 +15,24 @@ def input_from_user():
 
     return word
 
-def permutationGenerator():
+def permutationGenerator(permutations, no_of_combinations, letters, word):
 
     while len(permutations) < no_of_combinations: # Begin rejection sampling loop
-        
+
+        letters_copy = letters.copy()
         generated_word = []
 
         for i in range(len(word)): # Initialise generated_word list with placeholder values
             generated_word.append(None)
 
-        generating_word(generated_word)
+        generating_word(generated_word, letters_copy, word)
 
         generated_word = "".join(generated_word) # Convert the list to a string
 
         permutations.add(generated_word)
 
-def generating_word(generated_word):
+def generating_word(generated_word, letters_copy, word):
 
-    letters_copy = letters.copy()
     index_exceptions = []
 
     for counter in range(len(word)):
@@ -50,27 +50,32 @@ def generating_word(generated_word):
     
         generated_word[random_index] = random_letter # Add the random letter to the generated_word list at a random index
 
-print("\n\033[4mRejection Sampling Permutation Generator (Python)\033[0m")
+def main():
 
-word = input_from_user()
+    print("\n\033[4mRejection Sampling Permutation Generator (Python)\033[0m")
 
-permutations = {word} # Permutations are served in a set which automatically handle repeated values
-letters = dict() # All letters within the user's word are handled through a dictionary (map)
-denominator = 1
+    word = input_from_user()
 
-for letter in word:
-    if letter not in letters: # Add a new entry to letters if one does not exist
-        letters[letter] = 1
-    else:
-        letters[letter] += 1 # Increment the existing entry in letters
+    permutations = {word} # Permutations are served in a set which automatically handle repeated values
+    letters = dict() # All letters within the user's word are handled through a dictionary (map)
+    denominator = 1
 
-for value in letters.values(): # Loop through all values in letters to account for characters that appear more that once and update the denominator accordingly
-    denominator *= math.factorial(value)
+    for letter in word:
+        if letter not in letters: # Add a new entry to letters if one does not exist
+            letters[letter] = 1
+        else:
+            letters[letter] += 1 # Increment the existing entry in letters
 
-no_of_combinations = math.factorial(len(word)) / denominator # Calculate number of permutations
+    for value in letters.values(): # Loop through all values in letters to account for characters that appear more that once and update the denominator accordingly
+        denominator *= math.factorial(value)
 
-print("\nThis word has", int(no_of_combinations), "combination(s).")
+    no_of_combinations = math.factorial(len(word)) / denominator # Calculate number of permutations
 
-permutationGenerator()
+    print("\nThis word has", int(no_of_combinations), "combination(s).")
 
-print("\nAll permutations:\n", permutations)
+    permutationGenerator(permutations, no_of_combinations, letters, word)
+
+    print("\nAll permutations:\n", permutations)
+
+if __name__ == "__main__":
+    main()
