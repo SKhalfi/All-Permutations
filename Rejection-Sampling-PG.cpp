@@ -4,6 +4,7 @@
 #include <vector>
 #include <algorithm>
 #include <unordered_set>
+#include <format>
 
 using namespace std;
 
@@ -153,13 +154,13 @@ int main() {
 
     const unsigned long long no_of_combinations = factorial( word.length()) / denominator;
 
-    cout << "This word has " + to_string(no_of_combinations) + " combination(s).\n";
+    cout << format("This word has {} combination(s).\n", no_of_combinations);
 
     permutation_generator(permutations, no_of_combinations, letters, unique_keys, word);
 
     cout << "\nAll permutations:\n";
 
     for (string permutation: permutations) {
-        cout << permutation + ", ";
+        cout << format("{}, ", permutation);
     }
 }

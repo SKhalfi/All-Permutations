@@ -19,11 +19,11 @@ public class Rejection_Sampling_PG {
         Scanner input = new Scanner(System.in);
 
         while (true) { // Continues looping until valid word is retrieved from user
-            System.out.print(System.lineSeparator() + "Enter a word (all characters are acceptable): ");
+            System.out.print("%nEnter a word (all characters are acceptable): ".formatted());
             word = input.nextLine().strip();
 
             if (word.isEmpty()) {
-                System.out.println(System.lineSeparator() + "Word must not be left empty.");
+                System.out.println("%nWord must not be left empty.".formatted());
             }
 
             else {
@@ -109,7 +109,7 @@ public class Rejection_Sampling_PG {
 
     public static void main(String[] args) {
 
-        System.out.println(System.lineSeparator() + "\u001B[4mRejection Sampling Permutation Generator (Java)\u001B[0m");
+        System.out.println("%n\u001B[4mRejection Sampling Permutation Generator (Java)\u001B[0m".formatted());
         
         String word = inputFromUser();
         HashSet<String> permutations = new HashSet<>(); // Permutations are served in a set which automatically handle repeated values
@@ -133,10 +133,10 @@ public class Rejection_Sampling_PG {
 
         long numOfCombinations = factorial(word.length()) /  denominator; // Calculate number of permutations
 
-        System.out.println(System.lineSeparator() + "This word has " +  numOfCombinations + " combination(s).");
+        System.out.println("%nThis word has %d combination(s).".formatted(numOfCombinations));
 
         permutations = permutationGenerator(permutations, numOfCombinations, letters, uniqueKeys, word);
 
-        System.out.println(System.lineSeparator() + "All permutations: " + System.lineSeparator() + permutations);
+        System.out.println("%nAll permutations:%n%s".formatted(permutations));
     }
 }

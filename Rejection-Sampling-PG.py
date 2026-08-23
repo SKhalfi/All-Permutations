@@ -71,11 +71,11 @@ def main():
 
     no_of_combinations = math.factorial(len(word)) / denominator # Calculate number of permutations
 
-    print("\nThis word has", int(no_of_combinations), "combination(s).")
+    print(f"\nThis word has {no_of_combinations} combination(s).")
 
     permutationGenerator(permutations, no_of_combinations, letters, word)
 
-    print("\nAll permutations:\n", permutations)
+    print(f"\nAll permutations:\n {permutations}")
 
 if __name__ == "__main__":
     main()
