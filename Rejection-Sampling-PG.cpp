@@ -61,6 +61,31 @@ void input_from_user(string &word) {
     }
 }
 
+void initalise_letters(unordered_map<char, int> &letters, string &word, vector<char> &unique_keys) {
+
+    for (char letter: word) {
+
+        if (letters.count(letter) == 0) {
+            letters[letter] = 1;
+            unique_keys.push_back(letter);
+        }
+        else {
+            letters[letter] += 1;
+        }
+    }
+}
+
+void calculate_num_of_permutations(unordered_map<char, int> &letters, string &word, unsigned long long &num_of_permutations) {
+
+    unsigned long long denominator = 1;
+
+    for (auto value: letters) {
+        denominator *= factorial(value.second);
+    }
+
+    num_of_permutations = factorial( word.length()) / denominator;
+}
+
 void generating_word (
     string &word,
     vector<int> &indexes,
@@ -134,29 +159,20 @@ int main() {
     input_from_user(word);
 
     unordered_set<string> permutations = {word};
+
     unordered_map<char, int> letters;
+
     vector<char> unique_keys = {};
-    unsigned long long denominator = 1;
 
-    for (char letter: word) {
-        if (letters.count(letter) == 0) {
-            letters[letter] = 1;
-            unique_keys.push_back(letter);
-        }
-        else {
-            letters[letter] += 1;
-        }
-    }
+    initalise_letters(letters, word, unique_keys);
 
-    for (auto value: letters) {
-        denominator *= factorial(value.second);
-    }
+    unsigned long long num_of_permutations;
 
-    const unsigned long long no_of_combinations = factorial( word.length()) / denominator;
+    calculate_num_of_permutations(letters, word, num_of_permutations);
 
-    cout << format("This word has {} combination(s).\n", no_of_combinations);
+    cout << format("This word has {} permutation(s).\n", num_of_permutations);
 
-    permutation_generator(permutations, no_of_combinations, letters, unique_keys, word);
+    permutation_generator(permutations, num_of_permutations, letters, unique_keys, word);
 
     cout << "\nAll permutations:\n";
 
