@@ -11,7 +11,10 @@ using namespace std;
 random_device rd;
 mt19937 gen(rd());
 
-unsigned long long random(unsigned long long lower_bound, unsigned long long upper_bound) {
+unsigned long long random (
+    unsigned long long lower_bound,
+    unsigned long long upper_bound
+    ) {
     uniform_int_distribution<unsigned long long> dist(lower_bound, upper_bound);
     return dist(gen);
 }
@@ -43,7 +46,7 @@ unsigned long long factorial(unsigned long long number) {
     return total;
 }
 
-void input_from_user(string &word) {
+void input_from_user(string &word) { // Continues looping until valid word is retrieved from user
 
     while (true) {
 
@@ -61,29 +64,37 @@ void input_from_user(string &word) {
     }
 }
 
-void initalise_letters(unordered_map<char, int> &letters, string &word, vector<char> &unique_keys) {
+void initalise_letters (
+    unordered_map<char, int> &letters,
+    string &word,
+    vector<char> &unique_keys
+    ) {
 
     for (char letter: word) {
 
-        if (letters.count(letter) == 0) {
+        if (letters.count(letter) == 0) { // Add a new entry to letters if one does not exist
             letters[letter] = 1;
             unique_keys.push_back(letter);
         }
         else {
-            letters[letter] += 1;
+            letters[letter] += 1; // Increment the existing entry in letters
         }
     }
 }
 
-void calculate_num_of_permutations(unordered_map<char, int> &letters, string &word, unsigned long long &num_of_permutations) {
+void calculate_num_of_permutations (
+    unordered_map<char, int> &letters,
+    string &word,
+    unsigned long long &num_of_permutations
+    ) {
 
     unsigned long long denominator = 1;
 
-    for (auto value: letters) {
+    for (auto value: letters) { // Loop through all values in letters to account for characters that appear more that once and update the denominator accordingly
         denominator *= factorial(value.second);
     }
 
-    num_of_permutations = factorial( word.length()) / denominator;
+    num_of_permutations = factorial( word.length()) / denominator; // Calculate number of permutations
 }
 
 void generating_word (
@@ -101,20 +112,22 @@ void generating_word (
 
     for (int counter = 0; counter < word.length(); counter++) {
 
+        // Find a random location to place a letter in generated_vector
         number_pos = random(0, (indexes.size() - 1));
         random_index = indexes.at(number_pos);
         indexes.erase(indexes.begin() + number_pos);
 
+        // Select a random letter from the map to place into generated_vector
         letter_pos = random(0, (unique_keys_copy.size() - 1));
         random_letter = unique_keys_copy.at(letter_pos);
         letters_copy.at(random_letter) -= 1;
 
-        if (letters_copy.at(random_letter) == 0) {
+        if (letters_copy.at(random_letter) == 0) { // Remove character from letters_copy and unique_keys_copy if its value is 0
             letters_copy.erase(random_letter);
             unique_keys_copy.erase(unique_keys_copy.begin() + letter_pos);
         }
 
-        generated_vector.at(random_index) = random_letter;
+        generated_vector.at(random_index) = random_letter; // Add the random letter to the generated_vector at a random index
     }
 }
 
@@ -126,7 +139,7 @@ void permutation_generator (
     string &word
     ) {
 
-    while (permutations.size() < no_of_combinations) {
+    while (permutations.size() < no_of_combinations) { // Begin rejection sampling loop
 
         unordered_map<char, int> letters_copy = letters;
         vector<char> unique_keys_copy = unique_keys;
@@ -134,14 +147,14 @@ void permutation_generator (
         string generated_word;
         vector<int> indexes = {};
 
-        for (int i = 0; i < word.length(); i++) {
+        for (int i = 0; i < word.length(); i++) { // Initialise generated_vector with placeholder values
             generated_vector.push_back('\0');
             indexes.push_back(i);
         }
 
         generating_word(word, indexes, unique_keys_copy, letters_copy, generated_vector);
 
-        for (char letter : generated_vector) {
+        for (char letter : generated_vector) { // Append all letters in generated_vector to generated_word
             generated_word += letter;
         }
 
@@ -158,9 +171,9 @@ int main() {
 
     input_from_user(word);
 
-    unordered_set<string> permutations = {word};
+    unordered_set<string> permutations = {word}; // Permutations are served in a set which automatically handle repeated values
 
-    unordered_map<char, int> letters;
+    unordered_map<char, int> letters; // All letters within the user's word are handled through a dictionary (map)
 
     vector<char> unique_keys = {};
 
