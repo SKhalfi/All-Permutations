@@ -36,11 +36,45 @@ public class Rejection_Sampling_PG {
         return word;
     }
 
+    public static HashMap<Character, Integer> initialiseLetters (String word) {
+
+        HashMap<Character, Integer> letters = new HashMap<>();
+        
+        for (char letter : word.toCharArray()) {
+
+            if (!letters.containsKey(letter)) { // Add a new entry to letters if one does not exist
+                letters.put(letter, 1);
+            }
+            else {
+                letters.put(letter, letters.get(letter) + 1); // Increment the existing entry in letters
+            }
+        }
+
+        return letters;
+    }
+
+    public static long calculateNumOfPermutations (
+        HashMap<Character, Integer> letters,
+        String word
+    ) {
+        
+        long denominator = 1;
+
+        for (int value: letters.values()) { // Loop through all values in letters to account for characters that appear more that once and update the denominator accordingly
+            denominator *= factorial(value);
+        }
+
+        long numOfPermutations = factorial(word.length()) /  denominator; // Calculate number of permutations
+
+        return numOfPermutations;
+
+    }
+
     public static HashSet<String> permutationGenerator (
         HashSet<String> permutations,
         long numOfCombinations,
         HashMap<Character, Integer> letters,
-        ArrayList<Character> uniqueKeys,
+        Set<Character> uniqueKeys,
         String word
     ) {
 
@@ -112,30 +146,16 @@ public class Rejection_Sampling_PG {
         System.out.println("%n\u001B[4mRejection Sampling Permutation Generator (Java)\u001B[0m".formatted());
         
         String word = inputFromUser();
+
         HashSet<String> permutations = new HashSet<>(); // Permutations are served in a set which automatically handle repeated values
-        HashMap<Character, Integer> letters = new HashMap<>(); // All letters within the user's word are handled through a dictionary (map)
-        ArrayList<Character> uniqueKeys = new ArrayList<>(); // A list of all unique keys in the letters map
-        long denominator = 1;
 
-        for (char letter : word.toCharArray()) {
-            if (!letters.containsKey(letter)) { // Add a new entry to letters if one does not exist
-                letters.put(letter, 1);
-                uniqueKeys.add(letter);
-            }
-            else {
-                letters.put(letter, letters.get(letter) + 1); // Increment the existing entry in letters
-            }
-        }
+        HashMap<Character, Integer> letters = initialiseLetters(word); // All letters within the user's word are handled through a dictionary (map)
 
-        for (int value: letters.values()) { // Loop through all values in letters to account for characters that appear more that once and update the denominator accordingly
-            denominator *= factorial(value);
-        }
+        Long numOfPermutations = calculateNumOfPermutations(letters, word);
 
-        long numOfCombinations = factorial(word.length()) /  denominator; // Calculate number of permutations
+        System.out.println("%nThis word has %d permutation(s).".formatted(numOfPermutations));
 
-        System.out.println("%nThis word has %d combination(s).".formatted(numOfCombinations));
-
-        permutations = permutationGenerator(permutations, numOfCombinations, letters, uniqueKeys, word);
+        permutations = permutationGenerator(permutations, numOfPermutations, letters, letters.keySet(), word);
 
         System.out.println("%nAll permutations:%n%s".formatted(permutations));
     }
