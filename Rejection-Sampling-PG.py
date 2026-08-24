@@ -15,14 +15,40 @@ def input_from_user() -> str:
 
     return word
 
+def initalise_letters (
+        letters: dict[str, int],
+        word : str
+    ) -> None:
+
+    for letter in word:
+
+        if letter not in letters: # Add a new entry to letters if one does not exist
+            letters[letter] = 1
+        else:
+            letters[letter] += 1 # Increment the existing entry in letters
+
+def calculate_num_of_permutations (
+        letters: dict[str, int],
+        word : str
+    ) -> int:
+
+    denominator : int = 1
+
+    for value in letters.values(): # Loop through all values in letters to account for characters that appear more that once and update the denominator accordingly
+        denominator *= math.factorial(value)
+    
+    num_of_permutations : int = math.factorial(len(word)) // denominator # Calculate number of permutations
+
+    return num_of_permutations
+
 def permutation_generator (
         permutations : set[str],
-        no_of_combinations : int,
+        num_of_permutations : int,
         letters : dict[str, int],
         word : str
-        ) -> None:
+    ) -> None:
 
-    while len(permutations) < no_of_combinations: # Begin rejection sampling loop
+    while len(permutations) < num_of_permutations: # Begin rejection sampling loop
 
         letters_copy : dict[str, int] = letters.copy()
         generated_word : list[str] = [""] * len(word) # Initialise generated_word list with placeholder empty strings
@@ -35,7 +61,7 @@ def generating_word (
         generated_word : list[str],
         letters_copy : dict[str, int],
         word : str
-        ) -> None:
+    ) -> None:
 
     used_indexes : list[int] = []
 
@@ -61,23 +87,16 @@ def main():
     word : str = input_from_user()
 
     permutations : set[str] = {word} # Permutations are served in a set which automatically handle repeated values
+    
     letters : dict[str, int] = dict() # All letters within the user's word are handled through a dictionary (map)
-    denominator : int = 1
 
-    for letter in word:
-        if letter not in letters: # Add a new entry to letters if one does not exist
-            letters[letter] = 1
-        else:
-            letters[letter] += 1 # Increment the existing entry in letters
+    initalise_letters(letters, word)
 
-    for value in letters.values(): # Loop through all values in letters to account for characters that appear more that once and update the denominator accordingly
-        denominator *= math.factorial(value)
+    num_of_permutations : int = calculate_num_of_permutations(letters, word)
 
-    no_of_combinations : int = math.factorial(len(word)) // denominator # Calculate number of permutations
+    print(f"\nThis word has {num_of_permutations} permutation(s).")
 
-    print(f"\nThis word has {no_of_combinations} combination(s).")
-
-    permutation_generator(permutations, no_of_combinations, letters, word)
+    permutation_generator(permutations, num_of_permutations, letters, word)
 
     print(f"\nAll permutations:\n {permutations}")
 
