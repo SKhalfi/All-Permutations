@@ -1,5 +1,6 @@
 import random
 import math
+import time
 
 def input_from_user() -> str:
 
@@ -86,6 +87,8 @@ def main():
 
     word : str = input_from_user()
 
+    start_time : float = time.perf_counter()
+
     permutations : set[str] = {word} # Permutations are served in a set which automatically handle repeated values
     
     letters : dict[str, int] = dict() # All letters within the user's word are handled through a dictionary (map)
@@ -98,7 +101,11 @@ def main():
 
     permutation_generator(permutations, num_of_permutations, letters, word)
 
+    end_time : float = time.perf_counter()
+
     print(f"\nAll permutations:\n {permutations}")
+
+    print(f"\nThe Rejection Sampling PG took {(end_time - start_time):.3f} seconds to find all permutations.\n")
 
 if __name__ == "__main__":
     main()
