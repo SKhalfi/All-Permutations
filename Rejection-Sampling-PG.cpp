@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <unordered_set>
 #include <format>
+#include <chrono>
 
 using namespace std;
 
@@ -171,6 +172,8 @@ int main() {
 
     input_from_user(word);
 
+    auto start_time = chrono::high_resolution_clock::now();
+
     unordered_set<string> permutations = {word}; // Permutations are served in a set which automatically handle repeated values
 
     unordered_map<char, int> letters; // All letters within the user's word are handled through a dictionary (map)
@@ -187,9 +190,17 @@ int main() {
 
     permutation_generator(permutations, num_of_permutations, letters, unique_keys, word);
 
+    auto end_time = chrono::high_resolution_clock::now();
+
     cout << "\nAll permutations:\n";
 
     for (string permutation: permutations) {
         cout << format("{}, ", permutation);
     }
+
+    chrono::duration<double, milli> duration_in_seconds = end_time - start_time;
+
+    duration_in_seconds /= 1000;
+
+    cout << format("\nThe Rejection Sampling PG took {:.3f} seconds to find all permutations.\n", duration_in_seconds.count());
 }

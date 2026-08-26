@@ -3,6 +3,7 @@ import java.util.*;
 public class Rejection_Sampling_PG {
 
     public static long factorial(long number) {
+        
         long total = 1;
 
         while (number > 1) {
@@ -19,6 +20,7 @@ public class Rejection_Sampling_PG {
         Scanner input = new Scanner(System.in);
 
         while (true) { // Continues looping until valid word is retrieved from user
+
             System.out.print("%nEnter a word (all characters are acceptable): ".formatted());
             word = input.nextLine().strip();
 
