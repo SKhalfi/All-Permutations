@@ -65,7 +65,7 @@ void input_from_user(string &word) { // Continues looping until valid word is re
     }
 }
 
-void initalise_letters (
+void initialise_letters (
     unordered_map<char, int> &letters,
     string &word,
     vector<char> &unique_keys
@@ -91,7 +91,7 @@ void calculate_num_of_permutations (
 
     unsigned long long denominator = 1;
 
-    for (auto value: letters) { // Loop through all values in letters to account for characters that appear more that once and update the denominator accordingly
+    for (const auto &value: letters) { // Loop through all values in letters to account for characters that appear more that once and update the denominator accordingly
         denominator *= factorial(value.second);
     }
 
@@ -134,13 +134,13 @@ void generating_word (
 
 void permutation_generator (
     unordered_set<string> &permutations,
-    const unsigned long long &no_of_combinations,
+    const unsigned long long &num_of_permutations,
     unordered_map<char, int> &letters,
     vector<char> &unique_keys,
     string &word
     ) {
 
-    while (permutations.size() < no_of_combinations) { // Begin rejection sampling loop
+    while (permutations.size() < num_of_permutations) { // Begin rejection sampling loop
 
         unordered_map<char, int> letters_copy = letters;
         vector<char> unique_keys_copy = unique_keys;
@@ -180,7 +180,7 @@ int main() {
 
     vector<char> unique_keys = {};
 
-    initalise_letters(letters, word, unique_keys);
+    initialise_letters(letters, word, unique_keys);
 
     unsigned long long num_of_permutations;
 
@@ -194,7 +194,7 @@ int main() {
 
     cout << "\nAll permutations:\n";
 
-    for (string permutation: permutations) {
+    for (const string &permutation: permutations) {
         cout << format("{}, ", permutation);
     }
 

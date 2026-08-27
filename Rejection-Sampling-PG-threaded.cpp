@@ -68,7 +68,7 @@ void input_from_user(string &word) { // Continues looping until valid word is re
     }
 }
 
-void initalise_letters (
+void initialise_letters (
     unordered_map<char, int> &letters,
     string &word,
     vector<char> &unique_keys
@@ -184,7 +184,7 @@ int main() {
 
     vector<char> unique_keys = {};
 
-    initalise_letters(letters, word, unique_keys);
+    initialise_letters(letters, word, unique_keys);
 
     unsigned long long num_of_permutations;
 

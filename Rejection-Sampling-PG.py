@@ -16,7 +16,7 @@ def input_from_user() -> str:
 
     return word
 
-def initalise_letters (
+def initialise_letters (
         letters: dict[str, int],
         word : str
     ) -> None:
@@ -93,7 +93,7 @@ def main():
     
     letters : dict[str, int] = dict() # All letters within the user's word are handled through a dictionary (map)
 
-    initalise_letters(letters, word)
+    initialise_letters(letters, word)
 
     num_of_permutations : int = calculate_num_of_permutations(letters, word)
 
