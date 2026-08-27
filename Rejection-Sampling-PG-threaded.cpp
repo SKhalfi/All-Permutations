@@ -143,7 +143,14 @@ void permutation_generator (
     string &word
     ) {
 
-    while (permutations.size() < num_of_permutations) { // Begin rejection sampling loop
+    while (true) { // Begin rejection sampling loop
+
+        {
+            lock_guard<mutex> lock(m); // lock_guard will release the thread when it exits this scope
+            if (permutations.size() >= num_of_permutations) { // Only check permutations.size() while it's locked to prevent a race condition
+                return;
+            }
+        }
 
         unordered_map<char, int> letters_copy = letters;
         vector<char> unique_keys_copy = unique_keys;
@@ -162,13 +169,15 @@ void permutation_generator (
             generated_word += letter;
         }
 
-        m.lock();
+        lock_guard<mutex> lock(m);
         permutations.insert(generated_word);
-        m.unlock();
     }
 }
 
 int main() {
+
+    cout << "\nThreaded Rejection Sampling Permutation Generator (C++)\n";
+    cout << "-------------------------------------------------------\n";
 
     vector<thread> threads;
 
@@ -202,7 +211,7 @@ int main() {
 
     auto end_time = chrono::high_resolution_clock::now();
 
-    cout << "All permutations:\n";
+    cout << "\nAll permutations:\n";
 
     for (const string &permutation: permutations) {
         cout << format("{}, ", permutation);
