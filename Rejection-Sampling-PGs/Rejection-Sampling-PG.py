@@ -87,8 +87,6 @@ def main():
 
     word : str = input_from_user()
 
-    start_time : float = time.perf_counter()
-
     permutations : set[str] = {word} # Permutations are served in a set which automatically handle repeated values
     
     letters : dict[str, int] = dict() # All letters within the user's word are handled through a dictionary (map)
@@ -98,6 +96,8 @@ def main():
     num_of_permutations : int = calculate_num_of_permutations(letters, word)
 
     print(f"\nThis word has {num_of_permutations} permutation(s).")
+
+    start_time : float = time.perf_counter()
 
     permutation_generator(permutations, num_of_permutations, letters, word)
 

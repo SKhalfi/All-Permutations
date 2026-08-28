@@ -149,8 +149,6 @@ public class Rejection_Sampling_PG {
         
         String word = inputFromUser();
 
-        long startTime = System.nanoTime();
-
         HashSet<String> permutations = new HashSet<>(); // Permutations are served in a set which automatically handle repeated values
 
         HashMap<Character, Integer> letters = initialiseLetters(word); // All letters within the user's word are handled through a dictionary (map)
@@ -158,6 +156,8 @@ public class Rejection_Sampling_PG {
         Long numOfPermutations = calculateNumOfPermutations(letters, word);
 
         System.out.println("%nThis word has %d permutation(s).".formatted(numOfPermutations));
+
+        long startTime = System.nanoTime();
 
         permutations = permutationGenerator(permutations, numOfPermutations, letters, letters.keySet(), word);
 

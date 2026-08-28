@@ -51,7 +51,7 @@ void input_from_user(string &word) { // Continues looping until valid word is re
 
     while (true) {
 
-        cout << "\nEnter a word: ";
+        cout << "\nEnter a word (all characters are acceptable): ";
         getline(cin, word);
         strip(word);
 
@@ -172,8 +172,6 @@ int main() {
 
     input_from_user(word);
 
-    auto start_time = chrono::high_resolution_clock::now();
-
     unordered_set<string> permutations = {word}; // Permutations are served in a set which automatically handle repeated values
 
     unordered_map<char, int> letters; // All letters within the user's word are handled through a dictionary (map)
@@ -187,6 +185,8 @@ int main() {
     calculate_num_of_permutations(letters, word, num_of_permutations);
 
     cout << format("This word has {} permutation(s).\n", num_of_permutations);
+
+    auto start_time = chrono::high_resolution_clock::now();
 
     permutation_generator(permutations, num_of_permutations, letters, unique_keys, word);
 
