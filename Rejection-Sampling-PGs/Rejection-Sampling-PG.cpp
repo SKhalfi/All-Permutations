@@ -2,7 +2,6 @@
 #include <random>
 #include <unordered_map>
 #include <vector>
-#include <algorithm>
 #include <unordered_set>
 #include <format>
 #include <chrono>
@@ -186,11 +185,11 @@ int main() {
 
     cout << format("This word has {} permutation(s).\n", num_of_permutations);
 
-    auto start_time = chrono::high_resolution_clock::now();
+    const auto start_time = chrono::high_resolution_clock::now();
 
     permutation_generator(permutations, num_of_permutations, letters, unique_keys, word);
 
-    auto end_time = chrono::high_resolution_clock::now();
+    const auto end_time = chrono::high_resolution_clock::now();
 
     cout << "\nAll permutations:\n";
 
