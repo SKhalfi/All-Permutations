@@ -41,6 +41,26 @@ def calculate_num_of_permutations (
 
     return num_of_permutations
 
+def find_new_pivot(word_list: list[str]) -> int:
+
+    for counter in range(-1, -len(word_list) - 1, -1):
+
+        if counter != -len(word_list):
+            if word_list[counter - 1] < word_list[counter]:
+                pivot : int = counter - 1
+                return pivot
+        else:
+            return 0
+
+def permutation_generator (
+        word : str,
+        permuations : set[str],
+        num_of_permutations : int
+        ) -> None:
+
+    while len(permuations) < num_of_permutations:
+        continue
+
 def main() -> None:
 
     print("\n\033[4mLexicographical Permutation Generator (Python)\033[0m")
@@ -56,6 +76,8 @@ def main() -> None:
     num_of_permutations : int = calculate_num_of_permutations(letters, word)
     
     print(f"\nThis word has {num_of_permutations} permutation(s).")
+
+    print(find_new_pivot(["a", "d", "c", "b", "b"]))
     
 
 if __name__ == "__main__":
