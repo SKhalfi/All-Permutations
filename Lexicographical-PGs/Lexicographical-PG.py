@@ -43,12 +43,25 @@ def calculate_num_of_permutations (
 
 def find_new_pivot(word_list: list[str]) -> int:
 
-    for counter in range(-1, -len(word_list) - 1, -1):
+    for counter in range(-1, -len(word_list) - 1, -1): # Read the list from right to left
 
-        if counter != -len(word_list):
-            if word_list[counter - 1] < word_list[counter]:
+        if counter != -len(word_list): # If it has reached the last element from right to left, stop looping to avoid out of range exception
+            if word_list[counter - 1] < word_list[counter]: # Check if the next element is less than the current element, if it is then that is the new pivot 
                 pivot : int = counter - 1
                 return pivot
+        else:
+            return 0 # Zero indicates that the list is in reverse order
+
+def find_new_successor (
+        word_list_fragment : list[str],
+        pivot : int
+        ) -> int:
+
+    for counter in range(-1, -len(word_list_fragment) - 1, -1):
+
+        if counter != -len(word_list_fragment):
+            if word_list_fragment[counter] > pivot:
+                return counter
         else:
             return 0
 
@@ -76,8 +89,6 @@ def main() -> None:
     num_of_permutations : int = calculate_num_of_permutations(letters, word)
     
     print(f"\nThis word has {num_of_permutations} permutation(s).")
-
-    print(find_new_pivot(["a", "d", "c", "b", "b"]))
     
 
 if __name__ == "__main__":
