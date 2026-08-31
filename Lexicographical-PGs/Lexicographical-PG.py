@@ -54,25 +54,45 @@ def find_new_pivot(word_list: list[str]) -> int:
 
 def find_new_successor (
         word_list_fragment : list[str],
-        pivot : int
-        ) -> int:
+        pivot_letter : str
+    ) -> int:
 
     for counter in range(-1, -len(word_list_fragment) - 1, -1):
 
-        if counter != -len(word_list_fragment):
-            if word_list_fragment[counter] > pivot:
-                return counter
-        else:
-            return 0
+        if word_list_fragment[counter] > pivot_letter:
+            return counter
+
+def swap_pivot_and_successor (
+        pivot : int,
+        successor : int,
+        word_list : list[str]
+    ) -> None:
+
+    temp : str = word_list[pivot]
+    
+    word_list[pivot] = word_list[successor]
+    
+    word_list[successor] = temp
 
 def permutation_generator (
         word : str,
         permuations : set[str],
         num_of_permutations : int
-        ) -> None:
+    ) -> None:
+
+    word_list : list[str] = list(word)
+
+    pivot : int = find_new_pivot(word_list)
+    
+    successor : int = find_new_successor(word_list[pivot + 1:], word_list[pivot])
+
+    swap_pivot_and_successor(pivot, successor, word_list)
+
+    word_list[pivot + 1:] = word_list[pivot + 1:][::-1]
 
     while len(permuations) < num_of_permutations:
-        continue
+
+        break
 
 def main() -> None:
 
@@ -89,6 +109,8 @@ def main() -> None:
     num_of_permutations : int = calculate_num_of_permutations(letters, word)
     
     print(f"\nThis word has {num_of_permutations} permutation(s).")
+
+    permutation_generator(word, permutations, num_of_permutations)
     
 
 if __name__ == "__main__":
