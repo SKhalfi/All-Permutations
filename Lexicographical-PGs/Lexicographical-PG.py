@@ -50,7 +50,7 @@ def find_new_pivot(word_list: list[str]) -> int:
                 pivot : int = counter - 1
                 return pivot
         else:
-            return 0 # Zero indicates that the list is in reverse order
+            return None # None indicates that the list is in reverse order
 
 def find_new_successor (
         word_list_fragment : list[str],
@@ -76,23 +76,27 @@ def swap_pivot_and_successor (
 
 def permutation_generator (
         word : str,
-        permuations : set[str],
+        permutations : set[str],
         num_of_permutations : int
     ) -> None:
 
-    word_list : list[str] = list(word)
+    word_list : list[str] = sorted(word)
 
-    pivot : int = find_new_pivot(word_list)
-    
-    successor : int = find_new_successor(word_list[pivot + 1:], word_list[pivot])
+    while len(permutations) < num_of_permutations:
 
-    swap_pivot_and_successor(pivot, successor, word_list)
+        pivot : int = find_new_pivot(word_list)
 
-    word_list[pivot + 1:] = word_list[pivot + 1:][::-1]
-
-    while len(permuations) < num_of_permutations:
-
-        break
+        if pivot != None:
+            
+            successor : int = find_new_successor(word_list[pivot + 1:], word_list[pivot])
+            
+            swap_pivot_and_successor(pivot, successor, word_list)
+            
+            word_list[pivot + 1:] = word_list[pivot + 1:][::-1]
+        else: # If word_list is in descending order, reverse it
+            word_list = word_list[::-1]
+            
+        permutations.add("".join(word_list))
 
 def main() -> None:
 
@@ -111,6 +115,8 @@ def main() -> None:
     print(f"\nThis word has {num_of_permutations} permutation(s).")
 
     permutation_generator(word, permutations, num_of_permutations)
+
+    print(f"\nAll permutations:\n {permutations}")
     
 
 if __name__ == "__main__":
