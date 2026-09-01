@@ -1,13 +1,14 @@
+import java.math.BigInteger;
 import java.util.*;
 
 public class Rejection_Sampling_PG {
 
-    public static long factorial(long number) {
+    public static BigInteger factorial(long number) {
         
-        long total = 1;
+        BigInteger total = BigInteger.ONE;
 
         while (number > 1) {
-            total *= number;
+            total = total.multiply(BigInteger.valueOf(number));
             number -= 1;
         }
 
@@ -55,18 +56,18 @@ public class Rejection_Sampling_PG {
         return letters;
     }
 
-    public static long calculateNumOfPermutations (
+    public static BigInteger calculateNumOfPermutations (
         HashMap<Character, Integer> letters,
         String word
     ) {
         
-        long denominator = 1;
+        BigInteger denominator = BigInteger.ONE;
 
-        for (int value: letters.values()) { // Loop through all values in letters to account for characters that appear more that once and update the denominator accordingly
-            denominator *= factorial(value);
+        for (long value: letters.values()) { // Loop through all values in letters to account for characters that appear more that once and update the denominator accordingly
+            denominator = denominator.multiply(factorial(value));
         }
 
-        long numOfPermutations = factorial(word.length()) /  denominator; // Calculate number of permutations
+        BigInteger numOfPermutations = factorial(word.length()).divide(denominator); // Calculate number of permutations
 
         return numOfPermutations;
 
@@ -74,13 +75,13 @@ public class Rejection_Sampling_PG {
 
     public static HashSet<String> permutationGenerator (
         HashSet<String> permutations,
-        long numOfCombinations,
+        BigInteger numOfPermutations,
         HashMap<Character, Integer> letters,
         Set<Character> uniqueKeys,
         String word
     ) {
 
-        while (permutations.size() < numOfCombinations) { // Begin rejection sampling loop
+        while (BigInteger.valueOf(permutations.size()).compareTo(numOfPermutations) < 0) { // Begin rejection sampling loop
 
             HashMap<Character, Integer> lettersCopy = new HashMap<>(letters);
             List<Character> uniqueKeysCopy = new ArrayList<Character>(uniqueKeys);
@@ -153,7 +154,7 @@ public class Rejection_Sampling_PG {
 
         HashMap<Character, Integer> letters = initialiseLetters(word); // All letters within the user's word are handled through a dictionary (map)
 
-        Long numOfPermutations = calculateNumOfPermutations(letters, word);
+        BigInteger numOfPermutations = calculateNumOfPermutations(letters, word);
 
         System.out.println("%nThis word has %d permutation(s).".formatted(numOfPermutations));
 
