@@ -1,4 +1,5 @@
 import math
+import time
 
 def input_from_user() -> str:
 
@@ -53,13 +54,13 @@ def find_new_pivot(word_list: list[str]) -> int:
             return None # None indicates that the list is in reverse order
 
 def find_new_successor (
-        word_list_fragment : list[str],
+        suffix : list[str],
         pivot_letter : str
     ) -> int:
 
-    for counter in range(-1, -len(word_list_fragment) - 1, -1):
+    for counter in range(-1, -len(suffix) - 1, -1): # Read the list from right to left
 
-        if word_list_fragment[counter] > pivot_letter:
+        if suffix[counter] > pivot_letter: # Find the next element in suffix that is greater than the pivot element
             return counter
 
 def swap_pivot_and_successor (
@@ -82,9 +83,9 @@ def permutation_generator (
 
     word_list : list[str] = sorted(word)
 
-    while len(permutations) < num_of_permutations:
+    while len(permutations) < num_of_permutations: # Starting permutation loop
 
-        pivot : int = find_new_pivot(word_list)
+        pivot : int = find_new_pivot(word_list) # find_new_pivot can return None if word_list is in descending order
 
         if pivot != None:
             
@@ -92,7 +93,7 @@ def permutation_generator (
             
             swap_pivot_and_successor(pivot, successor, word_list)
             
-            word_list[pivot + 1:] = word_list[pivot + 1:][::-1]
+            word_list[pivot + 1:] = word_list[pivot + 1:][::-1] # Reverse the suffix (suffix is word_list[pivot + 1:])
         else: # If word_list is in descending order, reverse it
             word_list = word_list[::-1]
             
@@ -114,10 +115,15 @@ def main() -> None:
     
     print(f"\nThis word has {num_of_permutations} permutation(s).")
 
+    start_time : float = time.perf_counter()
+
     permutation_generator(word, permutations, num_of_permutations)
 
+    end_time : float = time.perf_counter()
+
     print(f"\nAll permutations:\n {permutations}")
-    
+
+    print(f"\nThe Rejection Sampling PG took {(end_time - start_time):.5f} seconds to find all permutations.\n")
 
 if __name__ == "__main__":
     main()
