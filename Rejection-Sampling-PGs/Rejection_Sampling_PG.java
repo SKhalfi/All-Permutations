@@ -152,6 +152,8 @@ public class Rejection_Sampling_PG {
 
         HashSet<String> permutations = new HashSet<>(); // Permutations are served in a set which automatically handle repeated values
 
+        permutations.add(word);
+
         HashMap<Character, Integer> letters = initialiseLetters(word); // All letters within the user's word are handled through a dictionary (map)
 
         BigInteger numOfPermutations = calculateNumOfPermutations(letters, word);
