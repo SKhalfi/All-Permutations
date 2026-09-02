@@ -1,6 +1,9 @@
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Scanner;
 
 public class Lexicographical_PG {
@@ -75,9 +78,102 @@ public class Lexicographical_PG {
 
     }
 
+    public static Integer findNewPivot(List<Character> wordList) {
+
+        for (int counter = wordList.size() - 1; counter > -1; counter--) {
+
+            if (counter != 0) {
+                if (wordList.get(counter - 1) < wordList.get(counter)) {
+                    int pivot = counter - 1;
+                    return pivot;
+                }
+            }
+            else {
+                return null;
+            }
+
+        }
+        
+        return null;
+    }
+
+    public static Integer findNewSuccessorOffset (
+        List<Character> suffix,
+        char pivotLetter
+    ) {
+
+        for (int counter = suffix.size() - 1; counter > -1; counter--) {
+
+            if (suffix.get(counter) > pivotLetter) {
+                return counter + 1;
+            }
+        }
+
+        return null;
+    }
+
+    public static void swapPivotAndSuccessor (
+        int pivot,
+        int successor,
+        List<Character> wordList
+    ) {
+
+        char temp = wordList.get(pivot);
+
+        wordList.set(pivot, wordList.get(successor));
+
+        wordList.set(successor, temp);
+    }
+
+    public static HashSet<String> permutationGenerator (
+        String word,
+        HashSet<String> permutations,
+        BigInteger numOfPermutations
+    ) {
+
+        List<Character> wordList = new ArrayList<>();
+
+        for (char letter : word.toCharArray()) {
+            wordList.add(letter);
+        }
+
+        wordList.sort(null);
+
+        while (BigInteger.valueOf(permutations.size()).compareTo(numOfPermutations) < 0) {
+
+            Integer pivot = findNewPivot(wordList);
+
+            if (pivot != null) {
+                
+                Integer successorOffset = findNewSuccessorOffset(wordList.subList(pivot + 1, wordList.size()), wordList.get(pivot));
+
+                int successor = pivot + successorOffset;
+
+                swapPivotAndSuccessor(pivot, successor, wordList);
+
+                Collections.reverse(wordList.subList(pivot + 1, wordList.size()));
+
+            }
+            else {
+                Collections.reverse(wordList);
+            }
+
+            StringBuilder newWord = new StringBuilder("");
+
+            for (char letter : wordList) {
+                newWord.append(letter);
+            }
+
+            permutations.add(newWord.toString());
+            
+        }
+        return null;
+
+    }
+
     public static void main(String[] args) {
         
-        System.out.println("%n\u001B[4mRejection Sampling Permutation Generator (Java)\u001B[0m".formatted());
+        System.out.println("%n\u001B[4mLexicographical Permutation Generator (Java)\u001B[0m".formatted());
 
         String word = inputFromUser();
 
@@ -90,6 +186,10 @@ public class Lexicographical_PG {
         BigInteger numOfPermutations = calculateNumOfPermutations(letters, word);
 
         System.out.println("%nThis word has %d permutation(s).".formatted(numOfPermutations));
+
+        permutationGenerator(word, permutations, numOfPermutations);
+
+        System.out.println("%nAll permutations:%n%s".formatted(permutations));
 
     }
 }
