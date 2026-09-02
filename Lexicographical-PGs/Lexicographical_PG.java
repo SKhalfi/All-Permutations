@@ -187,9 +187,16 @@ public class Lexicographical_PG {
 
         System.out.println("%nThis word has %d permutation(s).".formatted(numOfPermutations));
 
+        long startTime = System.nanoTime();
+
         permutationGenerator(word, permutations, numOfPermutations);
+
+        long endTime = System.nanoTime();
 
         System.out.println("%nAll permutations:%n%s".formatted(permutations));
 
+        double durationInSecond = (endTime - startTime) / 1000000000.0;
+
+        System.out.println("%nThe Lexicographical PG took %.5f seconds to find all permutations.%n".formatted(durationInSecond));
     }
 }
