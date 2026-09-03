@@ -68,7 +68,7 @@ public class Lexicographical_PG {
         
         BigInteger denominator = BigInteger.ONE;
 
-        for (long value: letters.values()) { // Loop through all values in letters to account for characters that appear more that once and update the denominator accordingly
+        for (int value: letters.values()) { // Loop through all values in letters to account for characters that appear more that once and update the denominator accordingly
             denominator = denominator.multiply(factorial(value));
         }
 
@@ -127,7 +127,7 @@ public class Lexicographical_PG {
 
     public static HashSet<String> permutationGenerator (
         String word,
-        HashSet<String> permutations,
+        List<String> permutations,
         BigInteger numOfPermutations
     ) {
 
@@ -177,9 +177,7 @@ public class Lexicographical_PG {
 
         String word = inputFromUser();
 
-        HashSet<String> permutations = new HashSet<>(); // Permutations are served in a set which automatically handle repeated values
-
-        permutations.add(word);
+        List<String> permutations = new ArrayList<>(); // Permutations are served in a set which automatically handle repeated values
 
         HashMap<Character, Integer> letters = initialiseLetters(word); // All letters within the user's word are handled through a dictionary (map)
 

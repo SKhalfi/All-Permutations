@@ -77,7 +77,7 @@ def swap_pivot_and_successor (
 
 def permutation_generator (
         word : str,
-        permutations : set[str],
+        permutations : list[str],
         num_of_permutations : int
     ) -> None:
 
@@ -97,7 +97,7 @@ def permutation_generator (
         else: # If word_list is in descending order, reverse it
             word_list = word_list[::-1]
             
-        permutations.add("".join(word_list))
+        permutations.append("".join(word_list))
 
 def main() -> None:
 
@@ -105,7 +105,7 @@ def main() -> None:
 
     word : str = input_from_user()
 
-    permutations : set[str] = {word} # Permutations are served in a set which automatically handle repeated values
+    permutations : list[str] = [] # Permutations are served in a set which automatically handle repeated values
         
     letters : dict[str, int] = dict() # All letters within the user's word are handled through a dictionary (map)
     

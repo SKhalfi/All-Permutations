@@ -85,15 +85,15 @@ void calculate_num_of_permutations (
 
 void permutation_generator (
     string &word,
-    unordered_set<string> &permutations
+    vector<string> &permutations
     ) {
 
-    ranges::sort(word);
+    ranges::sort(word); // Sort the vector before starting
 
-    permutations.insert(word);
+    permutations.push_back(word); // push the sorted word to permutations because next_permutation finds the permutations after the starting one
 
     while (ranges::next_permutation(word).found) {
-        permutations.insert(word);
+        permutations.push_back(word);
     }
 
 }
@@ -107,7 +107,7 @@ int main() {
 
     input_from_user(word);
 
-    unordered_set<string> permutations = {}; // Permutations are served as a set
+    vector<string> permutations = {}; // Permutations are served as a vector
 
     unordered_map<char, int> letters; // All letters within the user's word are handled through a dictionary (map)
 
