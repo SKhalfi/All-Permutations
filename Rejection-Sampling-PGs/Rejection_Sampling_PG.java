@@ -204,6 +204,6 @@ public class Rejection_Sampling_PG {
 
         double durationInSecond = (endTime - startTime) / 1000000000.0;
 
-        System.out.println("%nThe Rejection Sampling PG took %.3f seconds to find all permutations.%n".formatted(durationInSecond));
+        System.out.println("%nThe Rejection Sampling PG took %.5f seconds to find all permutations.%n".formatted(durationInSecond));
     }
 }

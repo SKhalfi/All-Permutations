@@ -221,5 +221,5 @@ int main() {
 
     duration_in_seconds /= 1000;
 
-    cout << format("\nThe threaded Rejection Sampling PG took {:.3f} seconds to find all permutations.\n", duration_in_seconds.count());
+    cout << format("\nThe threaded Rejection Sampling PG took {:.5f} seconds to find all permutations.\n", duration_in_seconds.count());
 }

@@ -105,7 +105,7 @@ def main():
 
     print(f"\nAll permutations:\n {permutations}")
 
-    print(f"\nThe Rejection Sampling PG took {(end_time - start_time):.3f} seconds to find all permutations.\n")
+    print(f"\nThe Rejection Sampling PG took {(end_time - start_time):.5f} seconds to find all permutations.\n")
 
 if __name__ == "__main__":
     main()
