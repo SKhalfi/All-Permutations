@@ -7,8 +7,15 @@ import java.util.Scanner;
 
 public class Lexicographical_PG {
 
+    /**
+     * Calculates the factorial of a given non-negative number
+     * @param number A non-negative number of type long
+     * @return The result of (number * number - 1 * number - 2)
+     */
     public static BigInteger factorial(long number) {
         
+        assert (number > -1) : "Number must be non-negative.";
+
         BigInteger total = BigInteger.ONE;
 
         while (number > 1) {
@@ -19,6 +26,10 @@ public class Lexicographical_PG {
         return total;
     }
 
+    /**
+     * Uses a scanner to retrieve a valid string input from the user, checking if the input is empty, and removing leading and trailing whitespace
+     * @return The validated string input from the user
+     */
     public static String inputFromUser() {
 
         String word;
@@ -43,6 +54,11 @@ public class Lexicographical_PG {
         return word;
     }
 
+    /**
+     * Initialises the letters dictionary with a character as the key and an integer as the value
+     * @param word A valid word string from the inputFromUser() function
+     * @return The letters dictionary containing the count of each letter from the word string
+     */
     public static HashMap<Character, Integer> initialiseLetters (String word) {
 
         HashMap<Character, Integer> letters = new HashMap<>();
@@ -60,6 +76,12 @@ public class Lexicographical_PG {
         return letters;
     }
 
+    /**
+     * Calculates the number of permutations that can be generated from a given word
+     * @param letters A dictionary that contains the count of each letter in word
+     * @param word A valid word from the user
+     * @return A number of type BigInteger that represents the number of permutations that can be generated from a given word
+     */
     public static BigInteger calculateNumOfPermutations (
         HashMap<Character, Integer> letters,
         String word
@@ -77,6 +99,12 @@ public class Lexicographical_PG {
 
     }
 
+    /**
+     * Reads the wordList from right to left checking if the next element is lexicographically smaller than the current element,
+     * if that is the case then the next element is the pivot
+     * @param wordList A list of containing the characters of the user's word
+     * @return The index of a new pivot location in wordList
+     */
     public static Integer findNewPivot(List<Character> wordList) {
 
         for (int counter = wordList.size() - 1; counter > -1; counter--) {
@@ -96,6 +124,12 @@ public class Lexicographical_PG {
         return null;
     }
 
+    /**
+     * Finds a character that is lexicographically greater than the pivot in a sublist of wordList
+     * @param suffix A sublist of wordList containing all characters before the pivot (reading from right to left)
+     * @param pivotLetter The element at the location of the pivot point
+     * @return The location of the successor as a offset from the pivot index
+     */
     public static Integer findNewSuccessorOffset (
         List<Character> suffix,
         char pivotLetter
@@ -111,6 +145,12 @@ public class Lexicographical_PG {
         return null;
     }
 
+    /**
+     * Swaps the element at the pivot with the element at the successor in wordList
+     * @param pivot Index location of the pivot
+     * @param successor Index location of the successor
+     * @param wordList A list of containing the characters of the user's word
+     */
     public static void swapPivotAndSuccessor (
         int pivot,
         int successor,
@@ -124,6 +164,12 @@ public class Lexicographical_PG {
         wordList.set(successor, temp);
     }
 
+    /**
+     * A function that generates permutations lexicographically
+     * @param word A valid word from the user
+     * @param permutations A list which is appended to with new permutations
+     * @param numOfPermutations The number of permutations that can be created with the user's word
+     */
     public static void permutationGenerator (
         String word,
         List<String> permutations,
