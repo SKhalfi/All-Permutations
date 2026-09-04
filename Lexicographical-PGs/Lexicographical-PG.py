@@ -105,7 +105,7 @@ def main() -> None:
 
     word : str = input_from_user()
 
-    permutations : list[str] = [] # Permutations are served in a set which automatically handle repeated values
+    permutations : list[str] = [] # Permutations are served in as a list
         
     letters : dict[str, int] = dict() # All letters within the user's word are handled through a dictionary (map)
     

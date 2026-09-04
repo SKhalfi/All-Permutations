@@ -2,7 +2,6 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 
@@ -125,7 +124,7 @@ public class Lexicographical_PG {
         wordList.set(successor, temp);
     }
 
-    public static HashSet<String> permutationGenerator (
+    public static void permutationGenerator (
         String word,
         List<String> permutations,
         BigInteger numOfPermutations
@@ -167,8 +166,6 @@ public class Lexicographical_PG {
             permutations.add(newWord.toString());
             
         }
-        return null;
-
     }
 
     public static void main(String[] args) {
@@ -177,7 +174,7 @@ public class Lexicographical_PG {
 
         String word = inputFromUser();
 
-        List<String> permutations = new ArrayList<>(); // Permutations are served in a set which automatically handle repeated values
+        List<String> permutations = new ArrayList<>(); // Permutations are served as a list
 
         HashMap<Character, Integer> letters = initialiseLetters(word); // All letters within the user's word are handled through a dictionary (map)
 
