@@ -3,8 +3,15 @@ import java.util.*;
 
 public class Rejection_Sampling_PG {
 
+    /**
+     * Calculates the factorial of a given non-negative number
+     * @param number A non-negative number of type long
+     * @return The result of (number * number - 1 * number - 2)
+     */
     public static BigInteger factorial(long number) {
         
+        assert (number > -1) : "Number must be non-negative.";
+
         BigInteger total = BigInteger.ONE;
 
         while (number > 1) {
@@ -15,6 +22,10 @@ public class Rejection_Sampling_PG {
         return total;
     }
 
+    /**
+     * Uses a scanner to retrieve a valid string input from the user, checking if the input is empty, and removing leading and trailing whitespace
+     * @return The validated string input from the user
+     */
     public static String inputFromUser() {
 
         String word;
@@ -56,6 +67,11 @@ public class Rejection_Sampling_PG {
         return letters;
     }
 
+    /**
+     * Initialises the letters dictionary with a character as the key and an integer as the value
+     * @param word A valid word string from the inputFromUser() function
+     * @return The letters dictionary containing the count of each letter from the word string
+     */
     public static BigInteger calculateNumOfPermutations (
         HashMap<Character, Integer> letters,
         String word
@@ -73,6 +89,15 @@ public class Rejection_Sampling_PG {
 
     }
 
+    /**
+     * A function that generates permutations by using random sampling
+     * @param permutations A set which is appended to with new permutations
+     * @param numOfPermutations The number of permutations that can be created with the user's word
+     * @param letters A dictionary that contains the count of each letter in word
+     * @param uniqueKeys A list that contains letters that only appear once in the user's word
+     * @param word A valid word from the user
+     * @return The permutations set with all unique permutations
+     */
     public static HashSet<String> permutationGenerator (
         HashSet<String> permutations,
         BigInteger numOfPermutations,
@@ -106,6 +131,15 @@ public class Rejection_Sampling_PG {
         return permutations;
     }
 
+    /**
+     * Generates permutations by randoming selecting an index in a list and inserting a random letter into that location
+     * @param word A valid word from the user
+     * @param indexes A list containing the indexes that are free in generatedList
+     * @param uniqueKeysCopy A copy of the uniqueKeys list
+     * @param lettersCopy A copy of the letters dictionary
+     * @param generatedList A list containing null values at the start and is filled with random letters from the user's word
+     * @return generatedList
+     */
     public static ArrayList<Character> generatingWord (
         String word,
         List<Integer> indexes,
