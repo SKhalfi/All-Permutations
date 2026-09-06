@@ -12,9 +12,9 @@ In the case of this project, the items that are being used for this process are 
 
 ## The algorithm types that are being compared:
 
-- Random sampling
+- [Random sampling](#how-the-random-sampling-algorithm-works)
 
-- Lexicographical ordering
+- [Lexicographical ordering](#how-the-lexicographical-algorithm-works)
 
 ## General overview of how both algorithms work
 
@@ -23,6 +23,14 @@ The algorithm begins by prompting the user to enter a word of their choice and c
 Within the main loop it starts to generate permutations of the word provided and ends when all unique permutations have been discovered. Once all permutations have been found, a timer displays how long the algorithm took to finish.
 
 The timer strictly measures the `permutation_generator()` function and does not include the time it takes for the program to calculate the number of permutations or how long it takes for all permutations to be printed to the console.
+
+## How the Random Sampling algorithm works
+
+lorem ipsum dolor sit amet consectetur adipiscing elit ipsum anim dolore excepturi autem non et id qui ut quos omnis laboris qui sint sunt et officia et animi amet cillum ullamco laboris excepturi aut pariatur placeat nisi rerum quo minus nostrud praesentium et nisi voluptate rerum laborum repellendus consequatur animi
+
+## How the Lexicographical algorithm works
+
+lorem ipsum dolor sit amet consectetur adipiscing elit ipsum anim dolore excepturi autem non et id qui ut quos omnis laboris qui sint sunt et officia et animi amet cillum ullamco laboris excepturi aut pariatur placeat nisi rerum quo minus nostrud praesentium et nisi voluptate rerum laborum repellendus consequatur animi
 
 ## License
 
