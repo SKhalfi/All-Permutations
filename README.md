@@ -28,6 +28,21 @@ The timer strictly measures the `permutation_generator()` function and does not 
 
 lorem ipsum dolor sit amet consectetur adipiscing elit ipsum anim dolore excepturi autem non et id qui ut quos omnis laboris qui sint sunt et officia et animi amet cillum ullamco laboris excepturi aut pariatur placeat nisi rerum quo minus nostrud praesentium et nisi voluptate rerum laborum repellendus consequatur animi
 
+```mermaid
+flowchart TD
+    Input["user_input = 'abcdef'"] --> |"start with an empty list of size user_input"| A["[_, _, _, _, _, _]"]
+    A --> |"place 'c' at index 1"| B["[_, c, _, _, _, _]"]
+    B --> |"place 'b' at index 4"| C["[_, c, _, _, b, _]"]
+    C --> |"place 'f' at index 2"| D["[_, c, f, _, b, _]"]
+    D --> |"place 'd' at index 5"| E["[_, c, f, _, b, d]"]
+    E --> |"place 'e' at index 0"| F["[e, c, f, _, b, d]"]
+    F --> |"place 'a' at index 3\n(no other choice)"| G["[e, c, f, a, b, d]"]
+    G --> |"final result"| Output["new_permutation = 'ecfabd'"]
+
+    classDef endpoint fill:#d4edda, stroke:#28a745, stroke-width:2px
+    class Input,Output endpoint
+```
+
 ## How the Lexicographical algorithm works
 
 lorem ipsum dolor sit amet consectetur adipiscing elit ipsum anim dolore excepturi autem non et id qui ut quos omnis laboris qui sint sunt et officia et animi amet cillum ullamco laboris excepturi aut pariatur placeat nisi rerum quo minus nostrud praesentium et nisi voluptate rerum laborum repellendus consequatur animi
