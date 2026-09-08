@@ -47,6 +47,20 @@ flowchart TD
 
 lorem ipsum dolor sit amet consectetur adipiscing elit ipsum anim dolore excepturi autem non et id qui ut quos omnis laboris qui sint sunt et officia et animi amet cillum ullamco laboris excepturi aut pariatur placeat nisi rerum quo minus nostrud praesentium et nisi voluptate rerum laborum repellendus consequatur animi
 
+```mermaid
+flowchart TD
+    Input["user_input = '13542'"] --> |"convert the string into a list of characters"| A["[1, 3, 5, 4, 2]"]
+    A --> |"`scan from right to left to find the ***pivot*** which is the first element smaller than its right neighbour`"| B["`[1, ***3***, 5, 4, 2]`"]
+    B --> |"`The ***suffix*** is everything after the pivot (3)`"| C["`[1, 3, ***5, 4, 2***]`"]
+    C --> |"`isolate the suffix and scan from right to left for the ***successor*** which is the first element greater than the pivot`"| D["`[5, ***4***, 2]`"]
+    D --> |"Swap the pivot (3) and the successor (4)"| E["[1, 4, 5, 3, 2]"]
+    E --> |"`reverse the ***suffix***`"| F["`[1, 4, ***2, 3, 5***]`"]
+    F --> |"final result"| Output["new_permutation = '14235'"]
+
+    classDef endpoint fill:#d4edda, stroke:#28a745, stroke-width:2px
+    class Input,Output endpoint
+```
+
 ## License
 
 This project is licensed under the MIT License — see [LICENSE](LICENSE) for details.
