@@ -20,13 +20,25 @@ In the case of this project, the items that are being used for this process are 
 
 The algorithm begins by prompting the user to enter a word of their choice and calculates the number of permutations that can be produced using the word, factoring in repeated letters before starting the main loop inside the `permutation_generator()` function which is the most taxing section of the whole algorithm.
 
-Within the main loop it starts to generate permutations of the word provided and ends when all unique permutations have been discovered. Once all permutations have been found, a timer displays how long the algorithm took to finish.
+Within the main loop it starts to generate permutations of the word provided and ends when all unique permutations have been discovered.
 
-The timer strictly measures the `permutation_generator()` function and does not include the time it takes for the program to calculate the number of permutations or how long it takes for all permutations to be printed to the console.
+When this is the case, a timer displays how long the algorithm took to finish.
+
+This timer strictly measures the `permutation_generator()` function and does not include the time it takes for the program to calculate the number of permutations or how long it takes for all permutations to be printed to the console.
 
 ## How the Random Sampling algorithm works
 
-lorem ipsum dolor sit amet consectetur adipiscing elit ipsum anim dolore excepturi autem non et id qui ut quos omnis laboris qui sint sunt et officia et animi amet cillum ullamco laboris excepturi aut pariatur placeat nisi rerum quo minus nostrud praesentium et nisi voluptate rerum laborum repellendus consequatur animi
+The Random Sampling algorithm starts with an empty list with the same number of elements as there are in the user's word.
+
+The algorithm then uses a dictionary (map) to keep track of the characters in the user's word as well as the number of times each character appears.
+
+On each loop, elements are randomly selected from the dictionary and inserted into random indexes in the empty list.
+
+When the empty list is completely full, it is converted into a string and inserted into a set as a new permutation. 
+
+See the flowchart below for a visual example.
+
+### Random Sampling example:
 
 ```mermaid
 flowchart TD
@@ -46,6 +58,8 @@ flowchart TD
 ## How the Lexicographical algorithm works
 
 lorem ipsum dolor sit amet consectetur adipiscing elit ipsum anim dolore excepturi autem non et id qui ut quos omnis laboris qui sint sunt et officia et animi amet cillum ullamco laboris excepturi aut pariatur placeat nisi rerum quo minus nostrud praesentium et nisi voluptate rerum laborum repellendus consequatur animi
+
+### Lexicographical example:
 
 ```mermaid
 flowchart TD
