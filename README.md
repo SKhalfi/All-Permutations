@@ -36,7 +36,7 @@ On each loop, elements are randomly selected from the dictionary and inserted in
 
 When the empty list is completely full, it is converted into a string and inserted into a set as a new permutation. 
 
-See the flowchart below for a visual example.
+See the flowchart below for a visual example of the Random Sampling algorithm.
 
 ### Random Sampling example:
 
@@ -57,7 +57,25 @@ flowchart TD
 
 ## How the Lexicographical algorithm works
 
-lorem ipsum dolor sit amet consectetur adipiscing elit ipsum anim dolore excepturi autem non et id qui ut quos omnis laboris qui sint sunt et officia et animi amet cillum ullamco laboris excepturi aut pariatur placeat nisi rerum quo minus nostrud praesentium et nisi voluptate rerum laborum repellendus consequatur animi
+From a given word, the Lexicographical algorithm converts the string into a main list of characters. This main list is then scanned from right to left to locate a pivot.
+
+A pivot is found if the element currently being scanned is lexicographically smaller than its right neighbour.
+
+Using this pivot element a suffix can be defined as a sublist of elements from the main list. This suffix consists of all elements after the pivot.
+
+From the suffix, a successor element can be determined by scanning the suffix from right to left and finding the first element that is greater than the pivot element.
+
+When a successor element has been found, it is swapped with the pivot element and the suffix is reversed, resulting in the new permutation.
+
+Before the main loop begins, the user's word must be sorted in ascending order otherwise all permutations will not be discovered.
+
+This is due to the nature of the algorithm using all elements being sorted in ascending order as the starting permutation, and all elements being sorted in descending order as the ending permutation.
+
+This also means that the Lexicographical algorithm does not produce duplicate permutations as the random sampling algorithm does.
+
+As a result, all files in "All-Permutations/Lexicographical-PGs/" use a Tim sort algorithm on the user's word before discovering all permutations.
+
+See the flowchart below for a visual example of the Lexicographical algorithm. In the example, the user input is not sorted in ascending order for illustrative purposes.
 
 ### Lexicographical example:
 
