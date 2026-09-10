@@ -12,7 +12,7 @@ In the case of this project, the items that are being used for this process are 
 
 ## The algorithm types that are being compared:
 
-- [Random sampling](#how-the-random-sampling-algorithm-works)
+- [Rejection-sampling](#how-the-random-sampling-algorithm-works)
 
 - [Lexicographical ordering](#how-the-lexicographical-algorithm-works)
 
@@ -26,9 +26,9 @@ When this is the case, a timer displays how long the algorithm took to finish.
 
 This timer strictly measures the `permutation_generator()` function and does not include the time it takes for the program to calculate the number of permutations or how long it takes for all permutations to be printed to the console.
 
-## How the Random Sampling algorithm works
+## How the rejection-sampling algorithm works
 
-The Random Sampling algorithm starts with an empty list with the same number of elements as there are in the user's word.
+The rejection-sampling algorithm starts with an empty list with the same number of elements as there are in the user's word.
 
 The algorithm then uses a dictionary (map) to keep track of the characters in the user's word as well as the number of times each character appears.
 
@@ -36,9 +36,9 @@ On each loop, elements are randomly selected from the dictionary and inserted in
 
 When the empty list is completely full, it is converted into a string and inserted into a set as a new permutation. 
 
-See the flowchart below for a visual example of the Random Sampling algorithm.
+See the flowchart below for a visual example of the rejection-sampling algorithm.
 
-### Random Sampling example:
+### Rejection-sampling example:
 
 ```mermaid
 flowchart TD
@@ -55,9 +55,9 @@ flowchart TD
     class Input,Output endpoint
 ```
 
-## How the Lexicographical algorithm works
+## How the lexicographical algorithm works
 
-From a given word, the Lexicographical algorithm converts the string into a main list of characters. This main list is then scanned from right to left to locate a pivot.
+From a given word, the lexicographical algorithm converts the string into a main list of characters. This main list is then scanned from right to left to locate a pivot.
 
 A pivot is found if the element currently being scanned is lexicographically smaller than its right neighbour.
 
@@ -71,11 +71,11 @@ Before the main loop begins, the user's word must be sorted in ascending order o
 
 This is due to the nature of the algorithm using all elements being sorted in ascending order as the starting permutation, and all elements being sorted in descending order as the ending permutation.
 
-This also means that the Lexicographical algorithm does not produce duplicate permutations as the random sampling algorithm does.
+This also means that the lexicographical algorithm does not produce duplicate permutations as the rejection-sampling algorithm does.
 
 As a result, all files in "All-Permutations/Lexicographical-PGs/" use a Tim sort algorithm on the user's word before discovering all permutations.
 
-See the flowchart below for a visual example of the Lexicographical algorithm. In the example, the user input is not sorted in ascending order for illustrative purposes.
+See the flowchart below for a visual example of the lexicographical algorithm. In the example, the user input is not sorted in ascending order for illustrative purposes.
 
 ### Lexicographical example:
 
