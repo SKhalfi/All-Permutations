@@ -2,7 +2,101 @@
 
 A console-based project of two different types of Permutation Generator algorithms performed on a given word.
 
-Both algorithms are written in Python, Java, and C++ to allow users to compare the performance in these programming languages.
+Both types of algorithms are written in Python, Java, and C++ to allow users to compare the performance in these programming languages.
+
+## Installation & Running
+
+This project is implemented in three languages: Python, Java, and C++. Each is fully self-contained since there are no external dependencies beyond the language's standard library.
+
+### Python
+
+**Requirements:** Python 3.10 or later
+
+```bash
+# Run
+python3 Random_Sampling_PG.py
+```
+
+or
+
+```bash
+# Run
+python3 Lexicographical_PG.py
+```
+
+No `pip install` needed — the script only uses the standard library (`math`).
+
+---
+
+### Java
+
+**Requirements:** JDK 17 or later
+
+```bash
+# Compile
+javac Rejection_Sampling_PG.java
+
+# Then run
+java Rejection_Sampling
+```
+
+or
+
+```bash
+# Compile
+javac Lexicographical_PG.java
+
+# Then run
+java Lexicographical_PG
+```
+
+---
+
+### C++
+
+**Requirements:** A C++20-compatible compiler (GCC 13+, Clang 17+, or MSVC 19.29+) is needed.
+
+```bash
+# Compile
+g++ -std=c++20 Random_Sampling_PG.cpp -o Random_Sampling_PG
+
+# Then run
+./Random_Sampling_PG
+```
+
+or
+
+```bash
+# Compile
+g++ -std=c++20 Lexicographical_PG.cpp -o Lexicographical_PG
+
+# Then run
+./Lexicographical_PG
+```
+
+There is also an additional C++ file that uses the same rejection-sampling algorithm but uses multi-threaded.
+
+```bash
+# Compile
+g++ -std=c++20 Rejection_Sampling_PG_threaded.cpp -o Rejection_Sampling_PG_threaded
+
+# Then run
+./Rejection_Sampling_PG_threaded
+```
+
+> **Note:** On Windows with MSVC, use `cl /std:c++20 Lexicographical_PG.cpp` or equivalent for a different C++ file instead.
+
+---
+
+### Usage
+
+All three versions behave identically:
+
+1. Run the program.
+2. Enter a word when prompted (all characters are accepted).
+3. The program prints the total number of unique permutations, generates them all in random or lexicographical order, and prints the result along with the time taken.
+
+> **Warning:** Words with many unique characters grow permutation counts factorially (e.g. a 10-character word with no repeats has 3,628,800 permutations). Very long or highly varied input may take a long time and use significant memory.
 
 ## What is a Permutation Generator?
 
@@ -38,6 +132,8 @@ When the empty list is completely full, it is converted into a string and insert
 
 See the flowchart below for a visual example of the rejection-sampling algorithm.
 
+---
+
 ### Rejection-sampling example:
 
 ```mermaid
@@ -67,15 +163,11 @@ From the suffix, a successor element can be determined by scanning the suffix fr
 
 When a successor element has been found, it is swapped with the pivot element and the suffix is reversed, resulting in the new permutation.
 
-Before the main loop begins, the user's word must be sorted in ascending order otherwise all permutations will not be discovered.
-
-This is due to the nature of the algorithm using all elements being sorted in ascending order as the starting permutation, and all elements being sorted in descending order as the ending permutation.
-
-This also means that the lexicographical algorithm does not produce duplicate permutations as the rejection-sampling algorithm does.
-
-As a result, all files in "All-Permutations/Lexicographical-PGs/" use a Tim sort algorithm on the user's word before discovering all permutations.
+> **Note:** Before the main loop begins, the user's word must be sorted in ascending order otherwise all permutations will not be discovered. This is due to the nature of the algorithm using all elements being sorted in ascending order as the starting permutation, and all elements being sorted in descending order as the ending permutation. This also means that the lexicographical algorithm does not produce duplicate permutations as the rejection-sampling algorithm does. As a result, all files in "All-Permutations/Lexicographical-PGs/" use a Tim sort algorithm on the user's word before discovering all permutations.
 
 See the flowchart below for a visual example of the lexicographical algorithm. In the example, the user input is not sorted in ascending order for illustrative purposes.
+
+---
 
 ### Lexicographical example:
 
