@@ -14,7 +14,7 @@ This project is implemented in three languages: Python, Java, and C++. Each is f
 
 ```bash
 # Run
-python3 Random_Sampling_PG.py
+python3 Rejection_Sampling_PG.py
 ```
 
 or
@@ -37,7 +37,7 @@ No `pip install` needed — the script only uses the standard library (`math`).
 javac Rejection_Sampling_PG.java
 
 # Then run
-java Rejection_Sampling
+java Rejection_Sampling_PG
 ```
 
 or
@@ -58,10 +58,10 @@ java Lexicographical_PG
 
 ```bash
 # Compile
-g++ -std=c++20 Random_Sampling_PG.cpp -o Random_Sampling_PG
+g++ -std=c++20 Rejection_Sampling_PG.cpp -o Rejection_Sampling_PG
 
 # Then run
-./Random_Sampling_PG
+./Rejection_Sampling_PG
 ```
 
 or
@@ -74,7 +74,9 @@ g++ -std=c++20 Lexicographical_PG.cpp -o Lexicographical_PG
 ./Lexicographical_PG
 ```
 
-There is also an additional C++ file that uses the same rejection-sampling algorithm but uses multi-threaded.
+There is also an additional C++ file that has the same rejection-sampling algorithm but uses multi-threading.
+
+This splits the random-generation attempts across threads to search for missing permutations in parallel.
 
 ```bash
 # Compile
@@ -147,7 +149,7 @@ flowchart TD
     F --> |"place 'a' at index 3\n(no other choice)"| G["[e, c, f, a, b, d]"]
     G --> |"final result"| Output["new_permutation = 'ecfabd'"]
 
-    classDef endpoint fill:#d4edda, stroke:#28a745, stroke-width:2px
+    classDef endpoint fill:#d4edda,stroke:#28a745,stroke-width:2px
     class Input,Output endpoint
 ```
 
@@ -163,7 +165,7 @@ From the suffix, a successor element can be determined by scanning the suffix fr
 
 When a successor element has been found, it is swapped with the pivot element and the suffix is reversed, resulting in the new permutation.
 
-> **Note:** Before the main loop begins, the user's word must be sorted in ascending order otherwise all permutations will not be discovered. This is due to the nature of the algorithm using all elements being sorted in ascending order as the starting permutation, and all elements being sorted in descending order as the ending permutation. This also means that the lexicographical algorithm does not produce duplicate permutations as the rejection-sampling algorithm does. As a result, all files in "All-Permutations/Lexicographical-PGs/" use a Tim sort algorithm on the user's word before discovering all permutations.
+> **Note:** Before the main loop begins, the user's word must be sorted in ascending order otherwise all permutations will not be discovered. This is due to the nature of the algorithm using all elements being sorted in ascending order as the starting permutation, and all elements being sorted in descending order as the ending permutation. This also means that the lexicographical algorithm does not produce duplicate permutations as the rejection-sampling algorithm does. As a result, all source files use either a Timsort or Introsort algorithm on the user's word before discovering all permutations.
 
 See the flowchart below for a visual example of the lexicographical algorithm. In the example, the user input is not sorted in ascending order for illustrative purposes.
 
@@ -181,7 +183,7 @@ flowchart TD
     E --> |"`reverse the ***suffix***`"| F["`[1, 4, ***2, 3, 5***]`"]
     F --> |"final result"| Output["new_permutation = '14235'"]
 
-    classDef endpoint fill:#d4edda, stroke:#28a745, stroke-width:2px
+    classDef endpoint fill:#d4edda,stroke:#28a745,stroke-width:2px
     class Input,Output endpoint
 ```
 
