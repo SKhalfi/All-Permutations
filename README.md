@@ -106,7 +106,7 @@ In the case of this project, the items that are being used for this process are 
 
 ## The algorithm types that are being compared:
 
-- [Rejection-sampling](#how-the-random-sampling-algorithm-works)
+- [Rejection-sampling](#how-the-rejection-sampling-algorithm-works)
 
 - [Lexicographical ordering](#how-the-lexicographical-algorithm-works)
 
