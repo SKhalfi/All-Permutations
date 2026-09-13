@@ -33,11 +33,11 @@ public class Rejection_Sampling_PG {
 
         while (true) { // Continues looping until valid word is retrieved from user
 
-            System.out.print("%nEnter a word (all characters are acceptable): ".formatted());
+            System.out.printf("%nEnter a word (all characters are acceptable): ");
             word = input.nextLine().strip();
 
             if (word.isEmpty()) {
-                System.out.println("%nWord must not be left empty.".formatted());
+                System.out.printf("%nWord must not be left empty.%n");
             }
 
             else {
@@ -91,14 +91,13 @@ public class Rejection_Sampling_PG {
 
     /**
      * A function that generates permutations by using random sampling
-     * @param permutations A set that is appended to with new permutations
+     * @param permutations      A set that is appended to with new permutations
      * @param numOfPermutations The number of permutations that can be created with the user's word
-     * @param letters A dictionary that contains the count of each letter in the 'word' variable
-     * @param uniqueKeys A list that contains letters that only appear once in the user's word
-     * @param word A valid word from the user
-     * @return The permutations set with all unique permutations
+     * @param letters           A dictionary that contains the count of each letter in the 'word' variable
+     * @param uniqueKeys        A list that contains letters that only appear once in the user's word
+     * @param word              A valid word from the user
      */
-    public static HashSet<String> permutationGenerator (
+    public static void permutationGenerator (
         HashSet<String> permutations,
         BigInteger numOfPermutations,
         HashMap<Character, Integer> letters,
@@ -128,7 +127,6 @@ public class Rejection_Sampling_PG {
             permutations.add(generatedWord.toString());
         }
 
-        return permutations;
     }
 
     /**
@@ -180,7 +178,7 @@ public class Rejection_Sampling_PG {
 
     public static void main(String[] args) {
 
-        System.out.println("%n\u001B[4mRejection Sampling Permutation Generator (Java)\u001B[0m".formatted());
+        System.out.printf("%n\u001B[4mRejection Sampling Permutation Generator (Java)\u001B[0m%n");
         
         String word = inputFromUser();
 
@@ -192,18 +190,18 @@ public class Rejection_Sampling_PG {
 
         BigInteger numOfPermutations = calculateNumOfPermutations(letters, word);
 
-        System.out.println("%nThis word has %d permutation(s).".formatted(numOfPermutations));
+        System.out.printf("%nThis word has %d permutation(s).%n", numOfPermutations);
 
         long startTime = System.nanoTime();
 
-        permutations = permutationGenerator(permutations, numOfPermutations, letters, letters.keySet(), word);
+        permutationGenerator(permutations, numOfPermutations, letters, letters.keySet(), word);
 
         long endTime = System.nanoTime();
 
-        System.out.println("%nAll permutations:%n%s".formatted(permutations));
+        System.out.printf("%nAll permutations:%n%s%n", permutations);
 
         double durationInSecond = (endTime - startTime) / 1000000000.0;
 
-        System.out.println("%nThe Rejection Sampling PG took %.5f seconds to find all permutations.%n".formatted(durationInSecond));
+        System.out.printf("%nThe Rejection Sampling PG took %.5f seconds to find all permutations.%n%n", durationInSecond);
     }
 }

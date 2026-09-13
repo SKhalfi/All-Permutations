@@ -37,11 +37,11 @@ public class Lexicographical_PG {
 
         while (true) { // Continues looping until valid word is retrieved from user
 
-            System.out.print("%nEnter a word (all characters are acceptable): ".formatted());
+            System.out.printf("%nEnter a word (all characters are acceptable): ");
             word = input.nextLine().strip();
 
             if (word.isEmpty()) {
-                System.out.println("%nWord must not be left empty.".formatted());
+                System.out.printf("%nWord must not be left empty.%n");
             }
 
             else {
@@ -89,7 +89,7 @@ public class Lexicographical_PG {
         
         BigInteger denominator = BigInteger.ONE;
 
-        for (int value: letters.values()) { // Loop through all values in letters to account for characters that appear more that once and update the denominator accordingly
+        for (int value: letters.values()) { // Loop through all values in letters to account for characters that appear more than once and update the denominator accordingly
             denominator = denominator.multiply(factorial(value));
         }
 
@@ -216,7 +216,7 @@ public class Lexicographical_PG {
 
     public static void main(String[] args) {
         
-        System.out.println("%n\u001B[4mLexicographical Permutation Generator (Java)\u001B[0m".formatted());
+        System.out.printf("%n\u001B[4mLexicographical Permutation Generator (Java)\u001B[0m%n");
 
         String word = inputFromUser();
 
@@ -226,7 +226,7 @@ public class Lexicographical_PG {
 
         BigInteger numOfPermutations = calculateNumOfPermutations(letters, word);
 
-        System.out.println("%nThis word has %d permutation(s).".formatted(numOfPermutations));
+        System.out.printf("%nThis word has %d permutation(s).%n", numOfPermutations);
 
         long startTime = System.nanoTime();
 
@@ -234,10 +234,10 @@ public class Lexicographical_PG {
 
         long endTime = System.nanoTime();
 
-        System.out.println("%nAll permutations:%n%s".formatted(permutations));
+        System.out.printf("%nAll permutations:%n%s%n", permutations);
 
         double durationInSecond = (endTime - startTime) / 1000000000.0;
 
-        System.out.println("%nThe Lexicographical PG took %.5f seconds to find all permutations.%n".formatted(durationInSecond));
+        System.out.printf("%nThe Lexicographical PG took %.5f seconds to find all permutations.%n%n", durationInSecond);
     }
 }
