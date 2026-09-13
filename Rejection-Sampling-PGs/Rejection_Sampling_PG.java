@@ -79,7 +79,7 @@ public class Rejection_Sampling_PG {
         
         BigInteger denominator = BigInteger.ONE;
 
-        for (long value: letters.values()) { // Loop through all values in letters to account for characters that appear more that once and update the denominator accordingly
+        for (long value: letters.values()) { // Loop through all values in letters to account for characters that appear more than once and update the denominator accordingly
             denominator = denominator.multiply(factorial(value));
         }
 
@@ -91,9 +91,9 @@ public class Rejection_Sampling_PG {
 
     /**
      * A function that generates permutations by using random sampling
-     * @param permutations A set which is appended to with new permutations
+     * @param permutations A set that is appended to with new permutations
      * @param numOfPermutations The number of permutations that can be created with the user's word
-     * @param letters A dictionary that contains the count of each letter in word
+     * @param letters A dictionary that contains the count of each letter in the 'word' variable
      * @param uniqueKeys A list that contains letters that only appear once in the user's word
      * @param word A valid word from the user
      * @return The permutations set with all unique permutations
@@ -132,9 +132,9 @@ public class Rejection_Sampling_PG {
     }
 
     /**
-     * Generates permutations by randoming selecting an index in a list and inserting a random letter into that location
+     * Generates permutations by randomly selecting an index in a list and inserting a random letter into that location
      * @param word A valid word from the user
-     * @param indexes A list containing the indexes that are free in generatedList
+     * @param indexes A list containing the indexes that are free in 'generatedList'
      * @param uniqueKeysCopy A copy of the uniqueKeys list
      * @param lettersCopy A copy of the letters dictionary
      * @param generatedList A list containing null values at the start and is filled with random letters from the user's word

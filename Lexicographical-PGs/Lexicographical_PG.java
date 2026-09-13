@@ -78,7 +78,7 @@ public class Lexicographical_PG {
 
     /**
      * Calculates the number of permutations that can be generated from a given word
-     * @param letters A dictionary that contains the count of each letter in word
+     * @param letters A dictionary that contains the count of each letter in the 'word' variable
      * @param word A valid word from the user
      * @return A number of type BigInteger that represents the number of permutations that can be generated from a given word
      */
@@ -101,7 +101,7 @@ public class Lexicographical_PG {
 
     /**
      * Reads the wordList from right to left checking if the next element is lexicographically smaller than the current element,
-     * if that is the case then the next element is the pivot
+     * if that is the case, then the next element is the pivot
      * @param wordList A list of containing the characters of the user's word
      * @return The index of a new pivot location in wordList
      */
@@ -128,7 +128,7 @@ public class Lexicographical_PG {
      * Finds a character that is lexicographically greater than the pivot in a sublist of wordList
      * @param suffix A sublist of wordList containing all characters before the pivot (reading from right to left)
      * @param pivotLetter The element at the location of the pivot point
-     * @return The location of the successor as a offset from the pivot index
+     * @return The location of the successor as an offset from the pivot index
      */
     public static Integer findNewSuccessorOffset (
         List<Character> suffix,
