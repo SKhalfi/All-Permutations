@@ -85,6 +85,8 @@ def main():
 
     print("\n\033[4mRejection Sampling Permutation Generator (Python)\033[0m")
 
+    print("\nWarning: Words with many unique characters grow permutation counts factorially. Very long or highly varied input may take a long time and user significant memory.")
+
     word : str = input_from_user()
 
     permutations : set[str] = {word} # Permutations are served in a set which automatically handle repeated values

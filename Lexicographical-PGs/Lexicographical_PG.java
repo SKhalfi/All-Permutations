@@ -218,6 +218,8 @@ public class Lexicographical_PG {
         
         System.out.printf("%n\u001B[4mLexicographical Permutation Generator (Java)\u001B[0m%n");
 
+        System.out.printf("%nWarning: Words with many unique characters grow permutation counts factorially. Very long or highly varied input may take a long time and user significant memory.%n");
+
         String word = inputFromUser();
 
         List<String> permutations = new ArrayList<>(); // Permutations are served as a list

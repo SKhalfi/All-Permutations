@@ -179,6 +179,8 @@ public class Rejection_Sampling_PG {
     public static void main(String[] args) {
 
         System.out.printf("%n\u001B[4mRejection Sampling Permutation Generator (Java)\u001B[0m%n");
+
+        System.out.printf("%nWarning: Words with many unique characters grow permutation counts factorially. Very long or highly varied input may take a long time and user significant memory.%n");
         
         String word = inputFromUser();
 

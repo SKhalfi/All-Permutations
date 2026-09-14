@@ -179,6 +179,8 @@ int main() {
     cout << "\nThreaded Rejection Sampling Permutation Generator (C++)\n";
     cout << "-------------------------------------------------------\n";
 
+    cout << "\nWarning: Words with many unique characters grow permutation counts factorially. Very long or highly varied input may take a long time and user significant memory.\n";
+
     vector<thread> threads;
 
     string word;

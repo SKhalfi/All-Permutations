@@ -42,7 +42,7 @@ def calculate_num_of_permutations (
 
     return num_of_permutations
 
-def find_new_pivot(word_list: list[str]) -> int:
+def find_new_pivot(word_list: list[str]) -> int | None:
 
     for counter in range(-1, -len(word_list) - 1, -1): # Read the list from right to left
 
@@ -56,7 +56,7 @@ def find_new_pivot(word_list: list[str]) -> int:
 def find_new_successor (
         suffix : list[str],
         pivot_letter : str
-    ) -> int:
+    ) -> int | None:
 
     for counter in range(-1, -len(suffix) - 1, -1): # Read the list from right to left
 
@@ -85,11 +85,11 @@ def permutation_generator (
 
     while len(permutations) < num_of_permutations: # Starting permutation loop
 
-        pivot : int = find_new_pivot(word_list) # find_new_pivot can return None if word_list is in descending order
+        pivot : int | None = find_new_pivot(word_list) # find_new_pivot can return None if word_list is in descending order
 
         if pivot != None:
             
-            successor : int = find_new_successor(word_list[pivot + 1:], word_list[pivot])
+            successor : int | None = find_new_successor(word_list[pivot + 1:], word_list[pivot])
             
             swap_pivot_and_successor(pivot, successor, word_list)
             
@@ -102,6 +102,8 @@ def permutation_generator (
 def main() -> None:
 
     print("\n\033[4mLexicographical Permutation Generator (Python)\033[0m")
+
+    print("\nWarning: Words with many unique characters grow permutation counts factorially. Very long or highly varied input may take a long time and user significant memory.")
 
     word : str = input_from_user()
 
