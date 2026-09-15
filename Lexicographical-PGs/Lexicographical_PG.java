@@ -111,8 +111,7 @@ public class Lexicographical_PG {
 
             if (counter != 0) {
                 if (wordList.get(counter - 1) < wordList.get(counter)) {
-                    int pivot = counter - 1;
-                    return pivot;
+                    return counter - 1;
                 }
             }
             else {
@@ -203,7 +202,7 @@ public class Lexicographical_PG {
                 Collections.reverse(wordList);
             }
 
-            StringBuilder newWord = new StringBuilder("");
+            StringBuilder newWord = new StringBuilder();
 
             for (char letter : wordList) {
                 newWord.append(letter);

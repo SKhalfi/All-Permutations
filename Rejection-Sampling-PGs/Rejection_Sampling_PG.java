@@ -53,7 +53,7 @@ public class Rejection_Sampling_PG {
     public static HashMap<Character, Integer> initialiseLetters (String word) {
 
         HashMap<Character, Integer> letters = new HashMap<>();
-        
+
         for (char letter : word.toCharArray()) {
 
             if (!letters.containsKey(letter)) { // Add a new entry to letters if one does not exist
@@ -118,7 +118,7 @@ public class Rejection_Sampling_PG {
                 indexes.add(i);
             }
 
-            generatedList = generatingWord(word, indexes, uniqueKeysCopy, lettersCopy, generatedList);
+            generatingWord(word, indexes, uniqueKeysCopy, lettersCopy, generatedList);
 
             for (char letter: generatedList) { // Append all letters in generatedList to generatedWord
                 generatedWord.append(letter);
@@ -131,14 +131,13 @@ public class Rejection_Sampling_PG {
 
     /**
      * Generates permutations by randomly selecting an index in a list and inserting a random letter into that location
-     * @param word A valid word from the user
-     * @param indexes A list containing the indexes that are free in 'generatedList'
+     * @param word           A valid word from the user
+     * @param indexes        A list containing the indexes that are free in 'generatedList'
      * @param uniqueKeysCopy A copy of the uniqueKeys list
-     * @param lettersCopy A copy of the letters dictionary
-     * @param generatedList A list containing null values at the start and is filled with random letters from the user's word
-     * @return generatedList
+     * @param lettersCopy    A copy of the letters dictionary
+     * @param generatedList  A list containing null values at the start and is filled with random letters from the user's word
      */
-    public static ArrayList<Character> generatingWord (
+    public static void generatingWord (
         String word,
         List<Integer> indexes,
         List<Character> uniqueKeysCopy,
@@ -173,7 +172,6 @@ public class Rejection_Sampling_PG {
             generatedList.set(randomIndex, randomLetter); // Add the random letter to the generatedList at a random index
         }
 
-        return generatedList;
     }
 
     public static void main(String[] args) {
