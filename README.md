@@ -61,7 +61,7 @@ java Lexicographical_PG
 g++ -std=c++20 Rejection_Sampling_PG.cpp -o Rejection_Sampling_PG
 
 # Then run
-./Rejection_Sampling_PG
+.\Rejection_Sampling_PG
 ```
 
 or
@@ -71,7 +71,7 @@ or
 g++ -std=c++20 Lexicographical_PG.cpp -o Lexicographical_PG
 
 # Then run
-./Lexicographical_PG
+.\Lexicographical_PG
 ```
 
 There is also an additional C++ file that has the same rejection-sampling algorithm but uses multi-threading.
@@ -83,7 +83,7 @@ This splits the random-generation attempts across threads to search for missing 
 g++ -std=c++20 Rejection_Sampling_PG_threaded.cpp -o Rejection_Sampling_PG_threaded
 
 # Then run
-./Rejection_Sampling_PG_threaded
+.\Rejection_Sampling_PG_threaded
 ```
 
 > **Note:** On Windows with MSVC, use `cl /std:c++20 Lexicographical_PG.cpp` or equivalent for a different C++ file instead.
